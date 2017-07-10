@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>3D Shapes</title>
+    
+    <meta charset="utf-8">
+    <meta name="author" content="Marc">
+    <meta name="description" content="A maths learning tool that uses VR to learn 3D shapes.">
+    <meta name="keywords" content="vr,maths,3d,learn,shape">
+    
+    <!-- deps -->
+    <script src="https://rawgit.com/aframevr/aframe/538439e/dist/aframe-master.min.js"></script>
+    <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+    
+    <!-- Aframe Components -->
+    <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+    <script src="https://rawgit.com/nylki/aframe-fit-texture-component/master/dist/aframe-fit-texture-component.min.js"></script>
+    <script src="assets/components/shape-swap.js"></script>
+    <script src="assets/components/spin.js"></script>
+    <script src="assets/components/texture-swap.js"></script>
+    <script src="assets/components/info-swap.js"></script>
+    <script src="assets/components/speak.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <a-assets>
+            <!-- thumbnails for the shape panels. -->
+            <img id="sphere-thumb" crossorigin="anonymous" src="assets/images/sphere.png">
+            <img id="box-thumb" crossorigin="anonymous" src="assets/images/cube.png">
+            <img id="cylinder-thumb" crossorigin="anonymous" src="assets/images/cylinder.png">
+            
+            <!-- thumbnails for the information panel, that shows you info about the shape -->
+            <img id="sphere-info-thumb" crossorigin="anonymous" src="assets/images/sphere-info.png">
+            <img id="box-info-thumb" crossorigin="anonymous" src="assets/images/cube-info.png">
+            <img id="cylinder-info-thumb" crossorigin="anonymous" src="assets/images/cylinder-info.png">
+            
+            <!-- Sounds -->
+            <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+            <audio id="forest-ambience" crossorigin="anonymous" src="https://upload.wikimedia.org/wikipedia/commons/0/0a/20090610_0_ambience.ogg"></audio>
+            
+            <!-- Different textures for the shape -->
+            <img id="texture1" crossorigin="anonymous" src="https://i.imgur.com/VREJ6.png">
+            <img id="texture2" crossorigin="anonymous" src="https://i.imgur.com/0zfYpWE.png">
+            <img id="texture3" crossorigin="anonymous" src="https://i.imgur.com/rHFJiFU.jpg">
+
+            <!-- Template for the shape panels -->
+            <script id="link" type="text/html">
+                <a-entity class="link"
+                          geometry="primitive: plane; height: 1; width: 1"
+                          material="shader: flat; src: ${thumb}"
+                          event-set__1="_event: mousedown; scale: 1 1 1"
+                          event-set__2="_event: mouseup; scale: 1.2 1.2 1"
+                          event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
+                          event-set__4="_event: mouseleave; scale: 1 1 1"
+                          shape-swap="on: click; target: #shape; shape: ${shape}"
+                          info-swap="on: click; target: #info; thumb: ${info}"
+                          speak="on: click; word: ${word}"
+                          sound="on: click; src: #click-sound"></a-entity>
+            </script>
+        </a-assets>
+        
+        <!-- forest environment -->
+        <a-entity environment="preset: forest"></a-entity>
+        
+        <!-- central shape -->
+        <a-entity id="shape"
+                  class="link"
+                  position="0 1 -6"
+                  texture-swap="on: click; textureName: texture"
+                  fit-size
+                  spin></a-entity>
+
+        <!-- Shape panels -->
+        <a-entity id="links" layout="type: line; margin: 1.5" position="-1.5 4 -6">
+            <!-- Cube shape -->
+            <a-entity template="src: #link"
+                      data-shape="box"
+                      data-thumb="#box-thumb"
+                      data-info="#box-info-thumb"
+                      data-word="cube"></a-entity>
+            
+            <!-- Sphere shape -->
+            <a-entity template="src: #link"
+                      data-shape="sphere"
+                      data-thumb="#sphere-thumb"
+                      data-info="#sphere-info-thumb"
+                      data-word="sphere"></a-entity>
+            
+            <!-- Cylinder shape -->
+            <a-entity template="src: #link"
+                      data-shape="cylinder"
+                      data-thumb="#cylinder-thumb"
+                      data-info="#cylinder-info-thumb"
+                      data-word="cylinder"></a-entity>
+        </a-entity>
+        
+        <!-- Information panel -->
+        <a-entity id="info" position="4 3 -6" material="shader: flat"></a-entity>
+
+        <!-- Camera + cursor. -->
+        <a-entity camera look-controls position="0 2 0">
+            <a-cursor id="cursor"
+                      animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+                      animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+                      event-set__1="_event: mouseenter; color: springgreen"
+                      event-set__2="_event: mouseleave; color: black"
+                      fuse="true"
+                      raycaster="objects: .link"></a-cursor>
+        </a-entity>
+        
+        <!-- Play forest-ambience sound -->
+        <a-sound src="#forest-ambience" autoplay="true" loop="true"></a-sound>
+    </a-scene>
+</body>
+
+</html>
