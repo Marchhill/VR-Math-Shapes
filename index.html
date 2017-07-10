@@ -42,7 +42,7 @@
             
             <!-- Sounds -->
             <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
-            <audio id="forest-ambience" crossorigin="anonymous" src="https://upload.wikimedia.org/wikipedia/commons/0/0a/20090610_0_ambience.ogg"></audio>
+            <audio id="background-sound" crossorigin="anonymous" src="https://upload.wikimedia.org/wikipedia/commons/0/0a/20090610_0_ambience.ogg"></audio>
             
             <!-- Different textures for the shape -->
             <img id="texture1" crossorigin="anonymous" src="assets/textures/Brick.jpg">
@@ -69,7 +69,7 @@
             </script>
         </a-assets>
         
-        <!-- forest environment -->
+        <!-- environment -->
         <a-entity environment="preset: forest"></a-entity>
         
         <!-- central shape -->
@@ -118,8 +118,8 @@
                       raycaster="objects: .link"></a-cursor>
         </a-entity>
         
-        <!-- Play forest-ambience sound -->
-        <a-sound src="#forest-ambience" autoplay="true" loop="true"></a-sound>
+        <!-- Play background sound -->
+        <a-sound src="#background-sound" autoplay="true" loop="true"></a-sound>
     </a-scene>
 </body>
 
