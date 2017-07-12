@@ -11,7 +11,12 @@ AFRAME.registerComponent('shape-swap', {
     var el = this.el;
 
     el.addEventListener(data.on, function () {
-      data.target.setAttribute('geometry', {primitive: data.shape, size: data.size});
+      var size = data.size.split(" ");
+      var width = size[0];
+      var height = size[1];
+      var depth = size[2];
+      
+      data.target.setAttribute('geometry', {primitive: data.shape, width: width, depth: depth, height: height});
     });
   }
 });
