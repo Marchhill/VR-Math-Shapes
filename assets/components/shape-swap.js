@@ -2,7 +2,8 @@ AFRAME.registerComponent('shape-swap', {
   schema: {
     on: {type: 'string'},
     target: {type: 'selector'},
-    shape: {type: 'string'}
+    shape: {type: 'string'},
+    size: {type: 'string'}
   },
 
   init: function () {
@@ -10,7 +11,7 @@ AFRAME.registerComponent('shape-swap', {
     var el = this.el;
 
     el.addEventListener(data.on, function () {
-      data.target.setAttribute('geometry', 'primitive', data.shape);
+      data.target.setAttribute('geometry', {primitive: data.shape, size: data.size});
     });
   }
 });
