@@ -62,7 +62,7 @@
                           event-set__2="_event: mouseup; scale: 1.2 1.2 1"
                           event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
                           event-set__4="_event: mouseleave; scale: 1 1 1"
-                          shape-swap="on: click; target: #shape; shape: ${shape}"
+                          shape-swap="on: click; target: #shape; shape: ${shape}; size: ${size}"
                           info-swap="on: click; target: #info; thumb: ${info}"
                           speak="on: click; word: ${word}"
                           sound="on: click; src: #click-sound"></a-entity>
@@ -87,21 +87,24 @@
                       data-shape="box"
                       data-thumb="#box-thumb"
                       data-info="#box-info-thumb"
-                      data-word="cube"></a-entity>
+                      data-word="cube"
+                      data-size="2 2 2"></a-entity>
             
             <!-- Sphere shape -->
             <a-entity template="src: #link"
                       data-shape="sphere"
                       data-thumb="#sphere-thumb"
                       data-info="#sphere-info-thumb"
-                      data-word="sphere"></a-entity>
+                      data-word="sphere"
+                      data-size="1 1 1"></a-entity>
             
             <!-- Cylinder shape -->
             <a-entity template="src: #link"
                       data-shape="cylinder"
                       data-thumb="#cylinder-thumb"
                       data-info="#cylinder-info-thumb"
-                      data-word="cylinder"></a-entity>
+                      data-word="cylinder"
+                      data-size="1 2 1"></a-entity>
         </a-entity>
         
         <!-- Information panel -->
