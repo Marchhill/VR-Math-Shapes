@@ -15,7 +15,6 @@ This is a teaching tool that uses VR technology to learn about 3D Shapes.
 ![1](extras/screenshots/screenshot1.png)
 
 ![2](extras/screenshots/screenshot2.png)
-
 ![3](extras/screenshots/screenshot3.png)
 
 ## Technical details:
