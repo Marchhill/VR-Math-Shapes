@@ -122,7 +122,11 @@
         </a-entity>
         
         <!-- Plays background sounds -->
-        <a-sound src="#background-sound" autoplay="true" loop="true"></a-sound>
+        <a-sound src="#background-sound" autoplay="true" loop="true" id="soundPlay"></a-sound>
+        <script>
+            var sound = document.getElementById('soundPay');
+            sound.components.sound.startSound();
+        </script>
     </a-scene>
 </body>
 
